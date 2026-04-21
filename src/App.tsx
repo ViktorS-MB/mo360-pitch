@@ -534,7 +534,7 @@ const DemoSection = () => (
             className="mb-12 rounded-xl overflow-hidden border border-white/10"
           >
             <img 
-              src="/assets/CRAFT Dashboard Idee.png" 
+              src="/CRAFT Dashboard Idee.png" 
               alt="CRAFT Dashboard Idee" 
               className="w-full h-auto object-cover"
             />
