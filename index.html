@@ -1,16 +1,1294 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MO360 CRAFT | Strategic Presentation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #0F1115;
+            color: #e8e8e8;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :root {
+            --brand-black: #0F1115;
+            --brand-dark: #1C1F26;
+            --brand-grey: #252A35;
+            --brand-accent: #0099FF;
+            --brand-dim: #A0A5B1;
+            --brand-silver: #E0E0E0;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            backdrop-filter: blur(12px);
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 0 48px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: auto;
+            gap: 64px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: 300;
+            min-width: fit-content;
+            margin-right: 0;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .nav-brand:hover {
+            opacity: 0.8;
+        }
+
+        .nav-brand img {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-brand strong {
+            color: var(--brand-accent);
+            font-weight: 600;
+        }
+
+        .nav-chapters {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--brand-dim);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Roboto', sans-serif;
+            white-space: nowrap;
+        }
+
+        .nav-btn:hover {
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-btn.active {
+            background: rgba(0, 153, 255, 0.15);
+            color: var(--brand-accent);
+            border-color: rgba(0, 153, 255, 0.5);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--brand-accent), rgba(0, 153, 255, 0.25), transparent);
+            z-index: 50;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* SECTIONS */
+        section {
+            min-height: 100vh;
+            padding: 96px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-label {
+            font-family: 'Roboto', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--brand-dim);
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        h2 em {
+            font-style: italic;
+            color: var(--brand-accent);
+            font-weight: 500;
+        }
+
+        h2 span {
+            color: var(--brand-accent);
+        }
+
+        .section-p {
+            font-size: 18px;
+            color: var(--brand-dim);
+            max-width: 1200px;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* HERO SECTION */
+        #hero {
+            text-align: center;
+            padding-top: 150px;
+        }
+
+        #hero h1 {
+            font-size: clamp(3rem, 12vw, 6rem);
+            font-weight: 300;
+            margin-bottom: 24px;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+        }
+
+        #hero h1 em {
+            font-style: italic;
+            color: var(--brand-accent);
+            font-weight: 500;
+        }
+
+        #hero .subtitle {
+            font-size: 18px;
+            color: var(--brand-dim);
+            max-width: 700px;
+            margin: 0 auto 48px;
+            line-height: 1.6;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 80px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: inherit;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--brand-accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0080cc;
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            border: 1px solid var(--brand-dim);
+            color: var(--brand-dim);
+            background: transparent;
+        }
+
+        .btn-ghost:hover {
+            border-color: white;
+            color: white;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 32px;
+            background: linear-gradient(180deg, transparent, var(--brand-accent));
+        }
+
+        .scroll-text {
+            font-size: 11px;
+            color: #666;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* GRID LAYOUT */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .chaos-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .card-label {
+            font-size: 10px;
+            color: var(--brand-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .card-value {
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .card-value.bad {
+            color: #ff4444;
+        }
+
+        .card-note {
+            font-size: 11px;
+            color: #ff4444;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* STAT ROW */
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stat-box {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 32px;
+        }
+
+        .stat-num {
+            font-size: 36px;
+            font-weight: 300;
+            color: var(--brand-accent);
+            margin-bottom: 12px;
+        }
+
+        .stat-lbl {
+            font-size: 14px;
+            color: var(--brand-dim);
+            line-height: 1.6;
+        }
+
+        /* KPI GRID */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+            margin-bottom: 32px;  
+        }
+
+        .kpi-box {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 32px;
+        }
+
+        .kpi-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--brand-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+        }
+
+        .kpi-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--brand-dim);
+            line-height: 1.6;
+            padding-bottom: 8px;
+        }
+
+        .kpi-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .kpi-value {
+            font-weight: 300;
+            color: white;
+            text-align: right;
+        }
+
+        .kpi-note {
+            font-size: 12px;
+            color: white;
+            margin-top: 8px;
+            line-height: 24px;
+        }
+
+        .highlight-box {
+            border: 1px solid rgba(0, 153, 255, 0.3);
+            background: rgba(0, 153, 255, 0.05);
+            border-radius: 12px;
+            padding: 32px;
+            margin-top: 32px;
+        }
+
+        .highlight-box h3 {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--brand-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .comparison-col {
+            border: 2px solid;
+            border-radius: 8px;
+            padding: 32px;
+        }
+
+        .comparison-col.before {
+            border-color: rgba(255, 68, 68, 0.3);
+            background: rgba(255, 68, 68, 0.05);
+        }
+
+        .comparison-col.after {
+            border-color: rgba(0, 153, 255, 0.6);
+            background: rgba(0, 153, 255, 0.08);
+        }
+
+        .comparison-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .comparison-header .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .comparison-header.before .dot {
+            background: #ff4444;
+        }
+
+        .comparison-header.after .dot {
+            background: var(--brand-accent);
+        }
+
+        .comparison-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 16px;
+            margin-bottom: 16px;
+        }
+
+        .comparison-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .comparison-item-label {
+            font-size: 13px;
+            color: var(--brand-dim);
+            margin-bottom: 6px;
+        }
+
+        .comparison-item-value {
+            font-size: 20px;
+            font-weight: 300;
+            color: white;
+        }
+
+        .comparison-item-note {
+            font-size: 11px;
+            margin-top: 6px;
+            opacity: 0.7;
+        }
+
+        .comparison-before .comparison-item-value {
+            color: #ff4444;
+        }
+
+        .comparison-before .comparison-item-note {
+            color: #ff4444;
+        }
+
+        .comparison-after .comparison-item-value {
+            color: var(--brand-accent);
+        }
+
+        .comparison-after .comparison-item-note {
+            color: var(--brand-accent);
+        }
+
+        .roi-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            border: 2px solid rgba(0, 153, 255, 0.5);
+            border-radius: 12px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(0, 153, 255, 0.1) 0%, rgba(0, 153, 255, 0.05) 100%);
+            margin-top: 50px;
+        }
+
+        .roi-item {
+            text-align: left;
+        }
+
+        .roi-value {
+            font-size: 32px;
+            font-weight: 300;
+            color: var(--brand-accent);
+            margin-bottom: 8px;
+        }
+
+        .roi-label {
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .roi-desc {
+            font-size: 14px;
+            color: var(--brand-dim);
+            line-height: 1.6;
+        }
+
+        .architecture-chart {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .architecture-layer {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .architecture-layer-title {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--brand-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .architecture-layer-desc {
+            font-size: 16px;
+            font-weight: 300;
+            color: var(--brand-dim);
+        }
+
+        .three-col-grid {
+        display: grid;
+        gap: 26px;
+        align-items: center;
+        grid-auto-flow: column;
+        }
+
+        .arrow {
+        font-size: 24px;
+        line-height: 24px;
+        font-weight: bold;
+        }
+
+        .arrow-container {
+        text-align: center;
+        color: #666;
+        padding: 12px 0;
+        } 
+
+        .feature-card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .feature-number {
+            font-size: 48px;
+            font-weight: 300;
+            color: var(--brand-accent);
+            margin-bottom: 12px;
+        }
+    
+        .feature-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .feature-desc {
+            font-size: 13px;
+            color: var(--brand-dim);
+            line-height: 1.6;
+        }
+
+        .demo-mockup {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .browser-header {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.4);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .browser-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .browser-dot.red { background: #ff5f56; }
+        .browser-dot.yellow { background: #ffbd2e; }
+        .browser-dot.green { background: #27c93f; }
+
+        .browser-url {
+            flex: 1;
+            margin-left: 16px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 10px;
+            color: #888;
+            font-family: 'Courier New', monospace;
+        }
+
+        .demo-content {
+            padding: 32px;
+        }
+
+        .demo-dashboard-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 24px 0;
+            display: block;
+        }
+
+        .demo-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 24px;
+        }
+
+        .demo-subsection {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 24px;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .demo-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--brand-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .chat-message {
+            margin-bottom: 12px;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .chat-user {
+            color: var(--brand-dim);
+            text-align: left;
+        }
+
+        .chat-ai {
+            background: rgba(0, 153, 255, 0.1);
+            border-left: 2px solid var(--brand-accent);
+            padding: 12px;
+            border-radius: 4px;
+            color: var(--brand-dim);
+            text-align: left;
+        }
+
+        .chat-ai strong {
+            color: var(--brand-accent);
+        }
+
+        .footer-section {
+            text-align: center;
+            padding: 64px 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--brand-black);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--brand-accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #888;
+            letter-spacing: 1px;
+        }
+
+        /* ANIMATIONS */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+                padding: 0 24px;
+                height: auto;
+                min-height: 80px;
+            }
+
+            .nav-brand {
+                margin-right: 0;
+                margin-bottom: 12px;
+                flex-basis: 100%;
+            }
+
+            .nav-chapters {
+                flex-basis: 100%;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .demo-section {
+                grid-template-columns: 1fr;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+
+            section {
+                padding: 64px 24px;
+            }
+        
+            }
+            .list-with-bullets {
+            list-style-type: disc;
+            margin-inline-start: 12px;
+            font-weight: 100;
+            font-size: 16px;
+            }
+
+            .list-item {
+            margin-bottom: 8px;
+            }
+
+            .kpi-title2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="nav-brand" onclick="scrollToSection('hero')">
+            <img src="./public/malfunction_appicon_transparent.png" alt="Malfunction Logo">
+        </div>
+        <div class="nav-chapters" id="navChapters"></div>
+    </nav>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- HERO SECTION -->
+    <section id="hero">
+        <h1 class="fade-in-up">
+            Von der Anomalie<br>zur <em>Entscheidung.</em>
+        </h1>
+        <p class="subtitle fade-in-up delay-1">
+            MO360 CRAFT — die nächste Stufe unserer Digitalstrategie. Eine KI-Plattform, die Daten aus mehreren verifizierten Quellen in eine zentrale Wahrheit verwandelt.
+        </p>
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <div class="scroll-text">Scrollen</div>
+        </div>
+    </section>
+
+    <!-- FOUNDATION SECTION -->
+    <section id="foundation">
+        <div class="section-container">
+            <div class="section-label">TEIL I — Malfunction: Das Fundament</div>
+            <h2>Die <span>Grundlage</span> ist bewährt.</h2>
+            <p class="section-p" style="margin-bottom: 48px;">Malfunction ist seit Jahren das Rückgrat der Fehleranalyse.</p>
+            <div class="stat-row">
+                <div class="stat-box fade-in-up delay-1">
+                    <div class="stat-num">&gt; 6</div>
+                    <div class="stat-lbl">Integrierte Sensoren<br>
+                    <span style="font-size: 11px;">(DQF, IFQS, MRS, Plant View, VPC, Q-Live)</span></div>
+                </div>
+                <div class="stat-box fade-in-up delay-2">
+                    <div class="stat-num">täglich</div>
+                    <div class="stat-lbl">Datenaktualisierung<br><span style="font-size: 11px;">(Jeden Tag morgens)</span></div>
+                </div>
+                <div class="stat-box fade-in-up delay-3">
+                    <div class="stat-num">&gt; 350</div>
+                    <div class="stat-lbl">Aktive User<br><span style="font-size: 11px;">(Nutzer aus den verschiedensten Abteilungen)</span></div>
+                </div>
+                <div class="stat-box fade-in-up delay-4">
+                    <div class="stat-num">&gt; 30–40%</div>
+                    <div class="stat-lbl">Analysezeit-Reduktion<br><span style="font-size: 11px;">(vs. manuelle Recherche)</span></div>
+                </div>
+            </div>
+            <img src="./public/Sensors.png" alt="Sensors" style="width: 100%; max-width: 1000px; margin: 48px auto 0; display: block; border-radius: 8px; opacity: 0.9;">
+        </div>
+
+                    <div class="roi-box fade-in-up delay-3">
+                <div class="roi-item">
+                    <div class="roi-value">>1.562.000 €</div>
+                    <div class="roi-label">Insgesamte Einsparung</div>
+                    <div class="roi-desc">Bei Investition von 200 - 300k€</div>
+        
+                </div>
+                <div class="roi-item">
+                    <div class="roi-value">>60.000</div>
+                    <div class="roi-label">DQF Kundenrückmeldungen</div>
+                    <div class="roi-desc">Weltweiter Rollout (GER, FR, UK, CN, USA)</div>
+                </div>
+                <div class="roi-item">
+                    <div class="roi-value">>85.000</div>
+                    <div class="roi-label">gemeldete Probleme</div>
+                    <div class="roi-desc">Alle im Dashboard geclustert, rekodiert und auffindbar.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIMIT SECTION -->
+    <section id="limit">
+        <div class="section-container">
+            <div class="section-label">TEIL II — Die Grenzen</div>
+            <h2>Malfunction ist erfolgreich.<br><span>Aber nicht ausreichend.</span></h2>
+            <p class="section-p" style="margin-bottom: 32px;">PowerBI erreicht seine technische Grenze. Für KI-gestützte Echtzeit-Analyse brauchen wir eine neue Architektur.</p>
+            
+            <div class="three-col-grid fade-in-up">
+                <div class="architecture-layer" style="border: 2px solid rgba(255, 68, 68, 0.3); background: rgba(255, 68, 68, 0.05); padding: 40px 32px; text-align: center; min-height: 280px; display: flex; flex-direction: column; justify-content: center; gap: 24px;">
+                    <div style="font-size: 20px; font-weight: 600; color: #ff4444;">PowerBI-Grenze</div>
+                    <div style="font-size: 14px; color: var(--brand-dim); line-height: 1.8;">
+                        Bei > 1.000 Nutzern und täglich neuen Datensätzen erreichen wir die <strong style="color: white;">Grenzen von PowerBI</strong>.
+                    </div>
+                </div>
+
+                <div class="architecture-layer" style="border: 2px solid rgba(0, 153, 255, 0.3); background: rgba(0, 153, 255, 0.05); padding: 40px 32px; text-align: center; min-height: 280px; display: flex; flex-direction: column; justify-content: center; gap: 24px;">
+                    <div style="font-size: 20px; font-weight: 600; color: var(--brand-accent);">KI-Architektur</div>
+                    <div style="font-size: 14px; color: var(--brand-dim); line-height: 1.8;">
+                        Copilot Integration für die nächste Stufe: <strong style="color: white;">Echtzeit-KPIs + KI-Insights</strong> für proaktive Fehlerprävention.
+                    </div>
+                </div>
+
+                <div class="architecture-layer" style="border: 2px solid rgba(0, 153, 255, 0.3); background: rgba(0, 153, 255, 0.05); padding: 40px 32px; text-align: center; min-height: 280px; display: flex; flex-direction: column; justify-content: center; gap: 24px;">
+                    <div style="font-size: 20px; font-weight: 600; color: var(--brand-accent);">Key Features</div>
+                    <div style="font-size: 14px; color: var(--brand-dim); line-height: 1.8;">
+                        3D-Modelle + Live KPI-Updates + KI-Chat für <strong style="color: white;">Maximale Usability</strong> und schnelle Analysen.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KPI BASELINE SECTION -->
+    <section id="kpi-baseline">
+        <div class="section-container">
+            <div class="section-label">TEIL III — Wie ist Malfunction aufgebaut?</div>
+            <h2><span>KPI</span> - Baseline</h2>
+            <div class="kpi-grid">
+                <div class="kpi-box fade-in-up delay-1">
+                    <div class="kpi-title">A. IFQS Universe</div>
+                    <div class="kpi-item">
+                        <span class="kpi-title2">IQ Tool</span>
+                        <span class="kpi-value">Das Stammsystem von Malfunction</span>
+                    </div>
+                    <div class="kpi-note">  → Stammdatenpflege<br>
+                                             → Ressource Editor<br>
+                                             → Sonderumfragen<br> 
+                                            → User Management<br>
+                    </div>
+                    <div class="kpi-item" style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.05);">
+                        <span class="kpi-title2">ML Tool</span>
+                        <span class="kpi-value">Sonstige Beanstandungen landen hier</span>
+                    </div>
+                    <div class="kpi-note">  → Mitarbeiter rekodieren Beanstandungen die in der Kategorie Sonstiges landen<br>
+                                             → Warum? Kunden wissen manchmal nicht wohin mit der Beanstandung<br>
+                                             → Meist speziellere Fälle von Problemen<br> 
+                    </div>
+                </div>
+
+                <div class="arrow" style="text-align: center; color: #666;">↓</div>
+
+                <div class="kpi-box fade-in-up delay-2">
+                    <div class="kpi-title">B. MO360 Data Platform</div>
+                    <div class="kpi-item">
+                        <span class="kpi-title2">Azure Cloud / IFQS Universe silver layer</span>
+                        <span class="kpi-value">Zentrale IT Schnittstelle</span>
+                    </div>
+                    <div class="kpi-note">  → User Management<br>
+                                             → Databrix<br>
+                                             → DDX Freischaltung<br>
+                                             → Mehr als 120 freigeschaltete Konsumenten<br>
+                                             → Unity ADL<br> 
+                                             → DDX Freischaltung<br> 
+                    </div>
+                </div>
+
+                <div class="arrow" style="text-align: center; color: #666;">↓</div>
+
+
+                <div class="kpi-box fade-in-up delay-3">
+                    <div class="kpi-title">C. KI-spezifische KPIs</div>
+                    <div class="kpi-item">
+                        <span class="kpi-title2">Malfunction Dashboard</span>
+                        <span class="kpi-value">Das Endprodukt</span>
+                    </div>
+                    <div class="kpi-note">  → Monatliche Updates von neuen Features<br>
+                                             → User Management über Alice<br>
+                                             → Mehr als 9 Berichte, maßgeschneiderte für die verschiedensten Use Cases<br>
+                                             → Mehr als 1200 freigeschaltete Konsumenten<br> 
+                                             → Täglich 350 tägliche User aktiv<br> 
+                    </div>
+                </div>
+
+        </div>
+    </section>
+
+    <!-- VISION SECTION -->
+    <section id="vision">
+        <div class="section-container">
+            <div class="section-label">TEIL IV — CRAFT: Die Vision</div>
+            <h2>Malfunction meets <span>Gaming Experience.</span></h2>
+            <p class="section-p" style="margin-bottom: 48px;">3D-Modellvisualisierung, KI-Chat-Assistenz, strukturierte Datenübersicht — alles für intuitivere Fehleranalyse und schnellere Entscheidungen.</p>
+            
+            <div class="architecture-chart">
+                <div class="architecture-layer fade-in-up delay-1">
+                    <div class="architecture-layer-title">KI-Schicht · CRAFT Intelligence</div>
+                    <div class="architecture-layer-desc">3D-Modelle · KI-Chat für Problemanalyse · Reports · Anomalieerkennung</div>
+                </div>
+                <div class="arrow" style="text-align: center; color: #666; padding: 12px 0;">↓</div>
+                <div class="three-col-grid" style="margin-top: 24px;">
+                    <div class="architecture-layer fade-in-up delay-2">
+                        <div class="architecture-layer-title">RD / Konzept Reporting</div>
+                        <div class="architecture-layer-desc">Individuelle Views</div>
+                    </div>
+
+                    <div class="architecture-layer fade-in-up delay-3">
+                        <div class="architecture-layer-title">Plant</div>
+                        <div class="architecture-layer-desc">Individuelle Views</div>
+                    </div>
+
+                    <div class="architecture-layer fade-in-up delay-4">
+                        <div class="architecture-layer-title">Field / Series</div>
+                        <div class="architecture-layer-desc">Individuelle Views</div>
+                    </div>
+
+                        <div class="architecture-layer fade-in-up delay-4">
+                        <div class="architecture-layer-title">Managmement Reporting</div>
+                        <div class="architecture-layer-desc">Individuelle Views</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KPI TRANSFORMATION SECTION -->
+    <section id="kpi-transformation">
+        <div class="section-container">
+            <div class="section-label">TEIL V — Performance-Ziele</div>
+            <h2>Unsere Ziele mit<span> CRAFT</span>.</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-col before fade-in-up delay-1">
+                    <div class="comparison-header before">
+                        <div class="dot"></div>
+                        <span>Heute (Baseline)</span>
+                    </div>
+                    <div class="comparison-item comparison-before">
+                        <div class="comparison-item-label">Analysezeit</div>
+                        <div class="comparison-item-value">30 Minuten</div>
+                    </div>
+
+                    <div class="comparison-item comparison-before">
+                        <div class="comparison-item-label">KI-Integration</div>
+                        <div class="comparison-item-value">5%</div>
+                    </div>
+
+                    <div class="comparison-item comparison-before">
+                        <div class="comparison-item-label">Report-Ladezeit</div>
+                        <div class="comparison-item-value">mehr als 30 Sekunden</div>
+                    </div>
+
+                    <div class="comparison-item comparison-before">
+                        <div class="comparison-item-label">Fehlerabstellung</div>
+                        <div class="comparison-item-value">20% aller Fehler</div>
+                    </div>
+
+                    <div class="comparison-item comparison-before">
+                        <div class="comparison-item-label">Usability</div>
+                        <div class="comparison-item-value">50% Nutzerfreundlichkeit</div>
+                    </div>
+                </div>
+
+                <div class="comparison-col after fade-in-up delay-2">
+                    <div class="comparison-header after">
+                        <div class="dot"></div>
+                        <span>Mit CRAFT (KI + Architektur)</span>
+                    </div>
+                    <div class="comparison-item comparison-after">
+                        <div class="comparison-item-label">Analysezeit</div>
+                        <div class="comparison-item-value">10 min</div>
+                    </div>
+
+                    <div class="comparison-item comparison-after">
+                        <div class="comparison-item-label">KI-Integration</div>
+                        <div class="comparison-item-value">100%</div>
+                    </div>
+
+                    <div class="comparison-item comparison-after">
+                        <div class="comparison-item-label">Report-Ladezeiten</div>
+                        <div class="comparison-item-value">ca. 3 Sekunden</div>
+                    </div>
+
+                    <div class="comparison-item comparison-after">
+                        <div class="comparison-item-label">Fehlerabstellung</div>
+                        <div class="comparison-item-value">80% aller Fehler</div>
+                    </div>
+
+                    <div class="comparison-item comparison-after">
+                        <div class="comparison-item-label">Usability</div>
+                     <div class="comparison-item-value">100% Nutzerfreundlichkeit
+                    
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEMO SECTION -->
+    <section id="demo">
+        <div class="section-container">
+            <div class="section-label">TEIL VI — Funktionen in CRAFT</div>
+            <h2>CRAFT macht es <span>sichtbar.</span></h2>
+            <p class="section-p" style="margin-bottom: 48px;">3D-Modellvisualisierung mit kritischen KPIs und KI-Chat für intelligente Fehlerdiagnose — alle Daten auf einen Blick.</p>
+            
+            <div class="demo-mockup fade-in-up">
+                <div class="browser-header">
+                    <div class="browser-dot red"></div>
+                    <div class="browser-dot yellow"></div>
+                    <div class="browser-dot green"></div>
+                    <div class="browser-url">CRAFT.mercedes-benz.internal / dashboard</div>
+                </div>
+                <div class="demo-content">
+                    <img src="./public/CRAFT Dashboard Idee.png" alt="CRAFT Dashboard Preview" class="demo-dashboard-image">
+                    <div class="demo-section" style="margin-top: 32px;">
+                        <div class="demo-subsection fade-in-up delay-1">
+                            <div class="demo-label">3D Modell Ansicht</div>
+                            <div style="text-align: center; padding: 32px 0; color: var(--brand-dim);">
+                                <div style="font-size: 48px; margin-bottom: 12px;">🚗</div>
+                                <div style="font-weight: 600; margin-bottom: 6px;">S-Klasse (223)</div>
+                                <div style="font-size: 12px; margin-top: 12px;">Motor: OM654 DEH</div>
+                                <div style="font-size: 12px;">Status: ⚠️ Kritisch</div>
+                                <div style="font-size: 11px; margin-top: 12px; color: var(--brand-accent);">KPIs: Temperatur, Druck, Durchfluss</div>
+                            </div>
+                        </div>
+
+                        <div class="demo-subsection fade-in-up delay-2">
+                            <div class="demo-label">KI-Chat Assistenz</div>
+                            <div style="font-size: 11px; line-height: 1.8;">
+                                <div class="chat-message chat-user">
+                                    <strong>Du:</strong> "Was sind die Probleme bei der S-Klasse?"
+                                </div>
+                                <div class="chat-message chat-ai">
+                                    <strong>CRAFT:</strong> 3 kritische Fehler erkannt: Motortemperatur 95°C (Sollwert 85°C), Druck unter Norm, Durchfluss-Sensor Signal schwach. Wahrscheinliche Ursache: Thermostat-Verschleiß.
+                                </div>
+                                <div class="chat-message chat-user">
+                                    <strong>Du:</strong> "Auswirkungen?"
+                                </div>
+                                <div class="chat-message chat-ai">
+                                    <strong>CRAFT:</strong> Zunahme von Motorausfällen um 23% diesen Monat. Empfehlung: Dringende Wartung ab Linie 3.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEXT STEPS SECTION -->
+    <section id="next-steps">
+        <div class="section-container">
+            <div style="text-align: center; margin-bottom: 64px;">
+                <h2 style="text-align: center; margin-bottom: 24px;">Die Reise startet <span>jetzt.</span></h2>
+                <p class="section-p" style="margin: 0 auto; max-width: 700px;">Malfunction bewährt sich. CRAFT ist die nächste Stufe. Unsere Expertise ist der Schlüssel, lass uns zusammen eine zentrale Plattform bauen.</p>
+            </div>
+            
+            <div class="three-col-grid" style="margin-bottom: 48px;">
+                <div class="feature-card fade-in-up delay-1">
+                    <div class="feature-number">01</div>
+                    <div class="feature-title">Zentrale Plattform</div>
+                    <div class="feature-desc">CRAFT visualisiert alle Daten in einer einzigen, intuitiven Oberfläche.</div>
+                </div>
+                <div class="feature-card fade-in-up delay-2">
+                    <div class="feature-number">02</div>
+                    <div class="feature-title">Intelligente Features</div>
+                    <div class="feature-desc">3D-Modelle + KI-Chat = intuitive Fehleranalyse. Gaming-inspirierte UX für schnellere Entscheidungen.</div>
+                </div>
+                <div class="feature-card fade-in-up delay-3">
+                    <div class="feature-number">03</div>
+                    <div class="feature-title">Deine Vision</div>
+                    <div class="feature-desc">Dein Konzept ist der Blueprint. CRAFT ist die erste Anwendung. Gemeinsam skalieren wir für alle Programme.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-section">
+        <div class="footer-content">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 16px;">
+                <div style="width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--brand-accent); display: flex; align-items: center; justify-content: center;">
+                    <div style="width: 6px; height: 6px; background: var(--brand-accent); border-radius: 50%;"></div>
+                </div>
+                <span style="font-size: 12px; font-weight: 600; font-family: 'Roboto', sans-serif; letter-spacing: 1px;">MO360 · CRAFT</span>
+            </div>
+            <div class="footer-text">Vertraulich · Interne Verwendung · 2026</div>
+        </div>
+    </footer>
+
+    <script>
+        const CHAPTERS = [
+            { id: 'hero', title: 'Start' },
+            { id: 'foundation', title: 'Fundament' },
+            { id: 'limit', title: 'Grenze' },
+            { id: 'kpi-baseline', title: 'Struktur' },
+            { id: 'vision', title: 'Vision' },
+            { id: 'kpi-transformation', title: 'Performance-Ziele' },
+            { id: 'demo', title: 'Demo' },
+            { id: 'next-steps', title: 'Ausblick' },
+        ];
+
+        // Build navbar chapters
+        const navChapters = document.getElementById('navChapters');
+        CHAPTERS.forEach(chapter => {
+            const btn = document.createElement('button');
+            btn.className = 'nav-btn';
+            btn.textContent = chapter.title;
+            btn.onclick = () => scrollToSection(chapter.id);
+            navChapters.appendChild(btn);
+        });
+
+        // Scroll to section
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Update active nav and progress bar
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            
+            // Update progress bar
+            const progress = (scrollPos / (docHeight - windowHeight)) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+
+            // Update active nav button
+            let activeId = 'hero';
+            CHAPTERS.forEach(chapter => {
+                const section = document.getElementById(chapter.id);
+                if (section && section.offsetTop <= scrollPos + windowHeight / 2) {
+                    activeId = chapter.id;
+                }
+            });
+
+            document.querySelectorAll('.nav-btn').forEach((btn, idx) => {
+                btn.classList.toggle('active', CHAPTERS[idx].id === activeId);
+            });
+        });
+
+        // Trigger initial animations
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                el.style.animation = el.className.match(/delay-\d+/) 
+                    ? `fadeInUp 0.8s ease-out forwards` 
+                    : `fadeInUp 0.8s ease-out forwards`;
+            });
+        });
+    </script>
+</body>
+</html>
