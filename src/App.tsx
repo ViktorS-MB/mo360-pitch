@@ -30,8 +30,10 @@ const CHAPTERS: Chapter[] = [
   { id: 'hero', title: 'Start' },
   { id: 'problem', title: 'Problem' },
   { id: 'foundation', title: 'Fundament' },
+  { id: 'kpi-baseline', title: 'KPI-Baseline' },
   { id: 'limit', title: 'Grenze' },
   { id: 'vision', title: 'Vision' },
+  { id: 'kpi-transformation', title: 'KPI-Ziele' },
   { id: 'demo', title: 'Demo' },
   { id: 'next-steps', title: 'Ausblick' },
 ];
@@ -48,11 +50,11 @@ const Navbar = ({ scrollTo, activeId }: { scrollTo: (id: string) => void, active
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 px-12 h-20 flex items-center backdrop-blur-xl bg-black/80 border-b border-white/5">
         <div className="flex items-center gap-3 cursor-pointer hover:opacity-80 transition-opacity" onClick={() => scrollTo('hero')}>
-          <div className="w-6 h-6 rounded-full border-2 border-brand-accent flex items-center justify-center">
-            <div className="w-3 h-3 bg-brand-accent rounded-full"></div>
-          </div>
-          <span className="font-corporate font-light tracking-wider text-sm">MO360</span>
-          <span className="text-xs font-medium text-brand-accent tracking-widest">CRAFT</span>
+          <img 
+            src="/malfunction_appicon_transparent.png" 
+            alt="Malfunction App Icon" 
+            className="w-30 h-30 object-contain"
+          />
         </div>
         
         {/* Center Agenda Tracker */}
@@ -157,7 +159,7 @@ const Sidebar = ({ activeId, scrollTo }: { activeId: string, scrollTo: (id: stri
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                   >
-                    ▸ Aktiv
+                    ▸ TEILiv
                   </motion.div>
                 )}
               </div>
@@ -251,7 +253,7 @@ const ProblemSection = () => (
         transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         viewport={{ once: true, margin: "-100px" }}
       >
-        <div className="section-label">Akt I — Die heutige Realität</div>
+        <div className="section-label">TEIL I — Die heutige Realität</div>
         <h2 className="section-h2">Unser <em>Painpoint</em></h2>
         <p className="section-p">PowerBI hat seine Grenze errreicht. Das System wächst schneller als das Tool.</p>
       </motion.div>
@@ -296,9 +298,9 @@ const FoundationSection = () => (
         viewport={{ once: true, margin: "-100px" }}
         className="mb-16"
       >
-        <div className="section-label">Akt II — Malfunction: Das Fundament</div>
+        <div className="section-label">TEIL II — Malfunction: Das Fundament</div>
         <h2 className="section-h2">Die <span>Grundlage</span> ist bewährt.</h2>
-        <p className="section-p">Malfunction ist seit Jahren das Rückgrat der Fehleranalyse. Mit erweiterten Datenquellen, proaktivem Fehler-Management und strategischen Insights hat es bereits Millionen an Kosten gespart.</p>
+        <p className="section-p">Malfunction ist seit Jahren das Rückgrat der Fehleranalyse.</p>
       </motion.div>
       
       <div className="stat-row">
@@ -309,8 +311,9 @@ const FoundationSection = () => (
           viewport={{ once: true, margin: "-100px" }}
           className="stat-box"
         >
-          <div className="stat-num">5 +</div>
-          <div className="stat-lbl">Integrierte Systeme</div>
+          <div className="stat-num"> &gt; 6</div>
+          <div className="stat-lbl">Integrierte Systeme<br/><br/>
+          <span className="text-xs text-brand-dim font-light">(DQF, IFQS, MRS, Plant View, VPC, Q-Live)</span></div>
         </motion.div>
         
         <motion.div
@@ -321,7 +324,7 @@ const FoundationSection = () => (
           className="stat-box"
         >
           <div className="stat-num">täglich</div>
-          <div className="stat-lbl">Datenaktualisierung</div>
+          <div className="stat-lbl">DatenTEILualisierung<br/><span className="text-xs text-brand-dim font-light">(Real-time Fehlererfassung)</span></div>
         </motion.div>
         
         <motion.div
@@ -331,8 +334,8 @@ const FoundationSection = () => (
           viewport={{ once: true, margin: "-100px" }}
           className="stat-box"
         >
-          <div className="stat-num">1000 +</div>
-          <div className="stat-lbl">Nutzer</div>
+          <div className="stat-num"> &gt; 1000</div>
+          <div className="stat-lbl">TEILive User<br/><span className="text-xs text-brand-dim font-light">(Cross-funktional)</span></div>
         </motion.div>
         
         <motion.div
@@ -342,18 +345,203 @@ const FoundationSection = () => (
           viewport={{ once: true, margin: "-100px" }}
           className="stat-box"
         >
-          <div className="stat-num">1.000.000 €</div>
-          <div className="stat-lbl">Eingesparte Kosten</div>
+          <div className="stat-num"> &gt; 30 – 40%</div>
+          <div className="stat-lbl">Analysezeit-Reduktion<br/><span className="text-xs text-brand-dim font-light">(vs. manuelle Recherche)</span></div>
         </motion.div>
       </div>
-      
+    </div>
+  </Section>
+);
+
+// --- KPI BASELINE SECTION ---
+const KPIBaselineSection = () => (
+  <Section id="kpi-baseline" className="bg-brand-black">
+    <div className="max-w-7xl mx-auto w-full">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.25, ease: [0.4, 0, 0.2, 1] }}
+        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
         viewport={{ once: true, margin: "-100px" }}
-        className="pipeline"
+        className="mb-16"
       >
+        <div className="section-label">TEIL IV — KPI-Baseline: Die Realität heute</div>
+        <h2 className="section-h2"><span>KPI </span>- Baseline</h2>
+      </motion.div>
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        {/* A. Zeit & Effizienz */}
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="border border-white/10 bg-white/3 rounded-lg p-8"
+        >
+          <div className="text-xs font-bold text-brand-accent uppercase tracking-wider mb-4">A. Zeit- & Effizienz-KPIs</div>
+          <div className="space-y-4 text-sm text-brand-dim font-light">
+            <div className="flex justify-between items-start">
+              <span>Ø Analysezeit pro Fall</span>
+              <span className="text-white font-bold">~90 min</span>
+            </div>
+            <div className="text-xs text-brand-dim/60 mb-3">→ mit Malfunction: 50–60 min (30–40% Ersparnis)</div>
+            
+            <div className="flex justify-between items-start border-t border-white/10 pt-4">
+              <span>Zeit bis Root-Cause-ID</span>
+              <span className="text-white font-bold">3–5 Tage</span>
+            </div>
+            <div className="text-xs text-brand-dim/60">→ Ziel mit KI: 1–2 Tage</div>
+            
+            <div className="flex justify-between items-start border-t border-white/10 pt-4">
+              <span>Anzahl Touchpoints/Fall</span>
+              <span className="text-white font-bold">4–6 Tools</span>
+            </div>
+            <div className="text-xs text-brand-dim/60">→ Mit CRAFT: 1 zentrale Plattform</div>
+          </div>
+        </motion.div>
+
+        {/* B. Qualität & Fehlerkosten */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="border border-white/10 bg-white/3 rounded-lg p-8"
+        >
+          <div className="text-xs font-bold text-brand-accent uppercase tracking-wider mb-4">B. Qualitäts- & Fehlerkosten-KPIs</div>
+          <div className="space-y-4 text-sm text-brand-dim font-light">
+            <div className="flex justify-between items-start">
+              <span>NVK-Quote (Nacharbeit vor Kunde)</span>
+              <span className="text-white font-bold">~35%</span>
+            </div>
+            <div className="text-xs text-brand-dim/60 mb-3">→ Ziel: 25% (durch frühe Erkennung)</div>
+            
+            <div className="flex justify-between items-start border-t border-white/10 pt-4">
+              <span>GuK-relevante Kosten/Fehler</span>
+              <span className="text-white font-bold">€850–1.200</span>
+            </div>
+            <div className="text-xs text-brand-dim/60">→ Cluster-Prognose mit KI reduziert Eskalation</div>
+            
+            <div className="flex justify-between items-start border-t border-white/10 pt-4">
+              <span>Fehlerschlupf Werk→Kunde</span>
+              <span className="text-white font-bold">~8%</span>
+            </div>
+            <div className="text-xs text-brand-dim/60">→ KI-Mustererkennung: Ziel 4–5%</div>
+          </div>
+        </motion.div>
+
+        {/* C. KI-spezifische KPIs */}
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="border border-white/10 bg-white/3 rounded-lg p-8"
+        >
+          <div className="text-xs font-bold text-brand-accent uppercase tracking-wider mb-4">C. KI-spezifische Wirkungs-KPIs</div>
+          <div className="space-y-4 text-sm text-brand-dim font-light">
+            <div className="flex justify-between items-start">
+              <span>Automatisierungsgrad (KI)</span>
+              <span className="text-white font-bold">0% → 40%</span>
+            </div>
+            <div className="text-xs text-brand-dim/60 mb-3">→ Auto. Cluster-/Ursachen-Vorschlag</div>
+            
+            <div className="flex justify-between items-start border-t border-white/10 pt-4">
+              <span>Trefferquote KI-Ursachenvorschlag</span>
+              <span className="text-white font-bold">Ziel: 75–85%</span>
+            </div>
+            <div className="text-xs text-brand-dim/60">→ Akzeptanzrate nach 3 Monaten Training</div>
+            
+            <div className="flex justify-between items-start border-t border-white/10 pt-4">
+              <span>False-Positive-Rate</span>
+              <span className="text-white font-bold">&lt; 5%</span>
+            </div>
+            <div className="text-xs text-brand-dim/60">→ Blind-Alarmquote kontrollieren</div>
+          </div>
+        </motion.div>
+
+        {/* D. System & Performance */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="border border-white/10 bg-white/3 rounded-lg p-8"
+        >
+          <div className="text-xs font-bold text-brand-accent uppercase tracking-wider mb-4">D. System- & Performance-KPIs</div>
+          <div className="space-y-4 text-sm text-brand-dim font-light">
+            <div className="flex justify-between items-start">
+              <span>Ø Dashboard-Ladezeit</span>
+              <span className="text-white font-bold">30s → 3s</span>
+            </div>
+            <div className="text-xs text-brand-dim/60 mb-3">→ 10× schneller als PowerBI</div>
+            
+            <div className="flex justify-between items-start border-t border-white/10 pt-4">
+              <span>Query Response (VIN-Drilldown)</span>
+              <span className="text-white font-bold">&lt; 500ms</span>
+            </div>
+            <div className="text-xs text-brand-dim/60">→ Real-time Datenabfrage</div>
+            
+            <div className="flex justify-between items-start border-t border-white/10 pt-4">
+              <span>Datenlatenz Quelle→Viz</span>
+              <span className="text-white font-bold">&lt; 24h</span>
+            </div>
+            <div className="text-xs text-brand-dim/60">→ Batch + Mini-Streams</div>
+          </div>
+        </motion.div>
+
+        {/* E. Adoption & Nutzung */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="border border-white/10 bg-white/3 rounded-lg p-8 lg:col-span-2"
+        >
+          <div className="text-xs font-bold text-brand-accent uppercase tracking-wider mb-4">E. Adoptions- & Nutzungs-KPIs</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-brand-dim font-light">
+            <div>
+              <div className="flex justify-between items-start mb-2">
+                <span>TEILive User/Monat</span>
+                <span className="text-white font-bold">1.000+</span>
+              </div>
+              <div className="text-xs text-brand-dim/60">→ Ziel: +30% nach CRAFT Launch</div>
+            </div>
+            <div>
+              <div className="flex justify-between items-start mb-2">
+                <span>User Self-Service Rate</span>
+                <span className="text-white font-bold">42%</span>
+              </div>
+              <div className="text-xs text-brand-dim/60">→ Mit KI-Chat: 75% (Copilot)</div>
+            </div>
+            <div>
+              <div className="flex justify-between items-start mb-2">
+                <span>Wegfall alt. Tools/Reports</span>
+                <span className="text-white font-bold">4–6</span>
+              </div>
+              <div className="text-xs text-brand-dim/60">→ Excel, PowerBI-Module, Custom DB</div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="p-8 border border-brand-accent/40 bg-brand-accent/8 rounded-lg"
+      >
+        <div className="text-xs font-bold text-brand-accent mb-3 uppercase tracking-wider">Die Einsparlogik: Konkret monetarisiert</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-brand-dim/80 leading-relaxed font-light">
+          <div>
+            <strong className="text-white block mb-2">Direkte Kosteneinsparung (Jahr 1)</strong>
+            150 Fälle/Mo × 35 min Ersparnis × 50 €/h × 12 Mo = <strong className="text-brand-accent">~51.600 €</strong> + Feldausfalls-Reduktion durch KI (~5–8% weniger GuK) = +50–80k €
+          </div>
+          <div>
+            <strong className="text-white block mb-2">Indirekte Effekte (Skalierung)</strong>
+            Wegfall 4–6 Parallel-Tools → IT-Wartungs-Overhead -30% / User-Schulung -40% → ~30–40k € p.a. Einsparung
+          </div>
+        </div>
       </motion.div>
     </div>
   </Section>
@@ -370,70 +558,29 @@ const LimitSection = () => (
         viewport={{ once: true, margin: "-100px" }}
         className="mb-12"
       >
-        <div className="section-label">Akt III — Die Grenzen</div>
+        <div className="section-label">TEIL III — Die Grenzen</div>
         <h2 className="section-h2">Malfunction ist erfolgreich.<br/><span>Aber nicht ausreichend.</span></h2>
+        <p className="section-p">PowerBI erreicht seine technische Grenze. Für KI-gestützte Echtzeit-Analyse brauchen wir eine neue Architektur.</p>
       </motion.div>
-      
-      <div className="bar-list">
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.05, ease: [0.4, 0, 0.2, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="bar-item"
-        >
-          <div className="bar-label">Usability für Frontline</div>
-          <div className="bar-track"><div className="bar-fill" style={{ width: '42%', background: 'var(--color-brand-accent)' }}></div></div>
-          <div className="text-xs text-brand-accent">42%</div>
-        </motion.div>
-        
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="bar-item"
-        >
-          <div className="bar-label">Visuelle Darstellung</div>
-          <div className="bar-track"><div className="bar-fill" style={{ width: '25%', background: 'var(--color-brand-accent)' }}></div></div>
-          <div className="text-xs text-brand-accent">25%</div>
-        </motion.div>
-        
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.15, ease: [0.4, 0, 0.2, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="bar-item"
-        >
-          <div className="bar-label">KI-gestützte Assistenz</div>
-          <div className="bar-track"><div className="bar-fill" style={{ width: '5%', background: 'var(--color-brand-accent)' }}></div></div>
-          <div className="text-xs text-brand-accent">5%</div>
-        </motion.div>
-        
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="bar-item"
-        >
-          <div className="bar-label">3D-Modellvisualisierung</div>
-          <div className="bar-track"><div className="bar-fill" style={{ width: '0%', background: 'var(--color-brand-accent)' }}></div></div>
-          <div className="text-xs text-brand-accent">0%</div>
-        </motion.div>
-      </div>
       
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.25, ease: [0.4, 0, 0.2, 1] }}
         viewport={{ once: true, margin: "-100px" }}
-        className="mt-12 p-8 border border-brand-accent/30 bg-brand-accent/5 rounded-xl"
+        className="p-8 border border-brand-accent/30 bg-brand-accent/5 rounded-xl"
       >
-        <div className="text-sm font-bold text-brand-accent mb-4">Das Potenzial</div>
-        <div className="text-brand-dim leading-relaxed font-light">
-          Die Nutzer wünschen sich eine einfachere, visuelle Darstellung. Gamified Experience wie bei modernen Gaming-Plattformen, 3D-Modelle mit KPIs, intelligente KI-Chat-Assistenz — alles aus einer Quelle.
+        <div className="text-sm font-bold text-brand-accent mb-4">Warum neue Architektur notwendig ist</div>
+        <div className="text-brand-dim leading-relaxed font-light space-y-3">
+          <div>
+            <strong className="text-white">PowerBI-Grenze:</strong> Bei 1.000+ Nutzern und tägl. 100.000+ Datensätzen erreichen wir 99% CPU-Last. Echtzeit-KI ist ausgeschlossen.
+          </div>
+          <div>
+            <strong className="text-white">KI-Architektur:</strong> Für automatische Cluster-Erkennung brauchen wir Streaming-Pipeline + ML-Model-Serving, nicht OLAP-Cache.
+          </div>
+          <div>
+            <strong className="text-white">UX-Anforderung:</strong> 3D-Modelle + Live KPI-Updates = Web-basiert (React), nicht Power BI Embedded.
+          </div>
         </div>
       </motion.div>
     </div>
@@ -451,7 +598,7 @@ const VisionSection = () => (
         viewport={{ once: true, margin: "-100px" }}
         className="mb-16"
       >
-        <div className="section-label">Akt IV — CRAFT: Die Vision</div>
+        <div className="section-label">TEIL IV — CRAFT: Die Vision</div>
         <h2 className="section-h2">Malfunction meets <span>Gaming Experience.</span></h2>
         <p className="section-p">3D-Modellvisualisierung, KI-Chat-Assistenz, strukturierte Datenübersicht — alles für intuitivere Fehleranalyse und schnellere Entscheidungen.</p>
       </motion.div>
@@ -492,6 +639,149 @@ const VisionSection = () => (
   </Section>
 );
 
+// --- KPI TRANSFORMATION SECTION ---
+const KPITransformationSection = () => (
+  <Section id="kpi-transformation" className="bg-brand-black">
+    <div className="max-w-7xl mx-auto w-full">
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="mb-16"
+      >
+        <div className="section-label">TEIL V — KPI-Transformation: Messbarer Impact</div>
+        <h2 className="section-h2">Mit CRAFT: Die <span>Zahlen sprechen.</span></h2>
+        <p className="section-p">Nicht spekulativ. Nicht visionary. Die Ergebnisse sind konkret, quantifizierbar und in Ingenieurstunden und Euro monetarisiert.</p>
+      </motion.div>
+      
+      {/* 2x2 Comparison Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        {/* Heute */}
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="border-2 border-red-500/30 bg-red-500/5 rounded-lg p-8"
+        >
+          <div className="text-lg font-bold mb-6 flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-red-500"></div>
+            Heute (Baseline)
+          </div>
+          <div className="space-y-4 text-sm text-brand-dim font-light">
+            <div className="pb-4 border-b border-white/10">
+              <div className="font-bold text-white mb-1">Analysezeit/Fall</div>
+              <div className="text-lg text-red-400">90 min</div>
+            </div>
+            <div className="pb-4 border-b border-white/10">
+              <div className="font-bold text-white mb-1">Time to Root-Cause</div>
+              <div className="text-lg text-red-400">3–5 Tage</div>
+            </div>
+            <div className="pb-4 border-b border-white/10">
+              <div className="font-bold text-white mb-1">NVK-Quote</div>
+              <div className="text-lg text-red-400">~35%</div>
+            </div>
+            <div className="pb-4 border-b border-white/10">
+              <div className="font-bold text-white mb-1">Automatisierungsgrad</div>
+              <div className="text-lg text-red-400">0%</div>
+            </div>
+            <div className="pb-4 border-b border-white/10">
+              <div className="font-bold text-white mb-1">Dashboard-Ladezeit</div>
+              <div className="text-lg text-red-400">30s+</div>
+            </div>
+            <div>
+              <div className="font-bold text-white mb-1">Nutzer Self-Service Rate</div>
+              <div className="text-lg text-red-400">42%</div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Mit CRAFT */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="border-2 border-brand-accent/60 bg-brand-accent/8 rounded-lg p-8"
+        >
+          <div className="text-lg font-bold mb-6 flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-brand-accent animate-pulse"></div>
+            Mit CRAFT (KI + neue Architektur)
+          </div>
+          <div className="space-y-4 text-sm text-brand-dim font-light">
+            <div className="pb-4 border-b border-white/10">
+              <div className="font-bold text-brand-accent mb-1">Analysezeit/Fall</div>
+              <div className="text-lg text-brand-accent">35–45 min</div>
+              <div className="text-xs text-brand-accent/70 mt-2">-50–60%</div>
+            </div>
+            <div className="pb-4 border-b border-white/10">
+              <div className="font-bold text-brand-accent mb-1">Time to Root-Cause</div>
+              <div className="text-lg text-brand-accent">1–2 Tage</div>
+              <div className="text-xs text-brand-accent/70 mt-2">-50–70%</div>
+            </div>
+            <div className="pb-4 border-b border-white/10">
+              <div className="font-bold text-brand-accent mb-1">NVK-Quote</div>
+              <div className="text-lg text-brand-accent">~25%</div>
+              <div className="text-xs text-brand-accent/70 mt-2">-10%</div>
+            </div>
+            <div className="pb-4 border-b border-white/10">
+              <div className="font-bold text-brand-accent mb-1">Automatisierungsgrad</div>
+              <div className="text-lg text-brand-accent">40%</div>
+              <div className="text-xs text-brand-accent/70 mt-2">Auto. Ursachen-Vorschlag (75–85%)</div>
+            </div>
+            <div className="pb-4 border-b border-white/10">
+              <div className="font-bold text-brand-accent mb-1">Dashboard-Ladezeit</div>
+              <div className="text-lg text-brand-accent">&lt;3s</div>
+              <div className="text-xs text-brand-accent/70 mt-2">10× schneller</div>
+            </div>
+            <div>
+              <div className="font-bold text-brand-accent mb-1">Nutzer Self-Service Rate</div>
+              <div className="text-lg text-brand-accent">75%+</div>
+              <div className="text-xs text-brand-accent/70 mt-2">KI-Chat eliminiert Bottlenecks</div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* ROI Summary */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.1, ease: [0.4, 0, 0.2, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="p-10 border-2 border-brand-accent/50 bg-linear-to-r from-brand-accent/10 to-brand-accent/5 rounded-xl"
+      >
+        <div className="text-sm font-bold text-brand-accent uppercase tracking-wider mb-6">ROI & Justifikation: Jahr 1</div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <div className="text-2xl font-bold text-brand-accent mb-2">€ 130.000–180.000</div>
+            <div className="text-xs font-bold text-white mb-2">JÄHRLICHE EINSPARUNG</div>
+            <div className="text-xs text-brand-dim leading-relaxed">
+              <strong>Direkt:</strong> 150 Fälle/Mo × 50 min Ersparnis × 50€/h = €51.600<br/>
+              <strong>Indirekt:</strong> 10% weniger NVK (€50–80k) + Parallel-Tool Wegfall (€30–40k)
+            </div>
+          </div>
+          <div>
+            <div className="text-2xl font-bold text-brand-accent mb-2">6–9 Monate</div>
+            <div className="text-xs font-bold text-white mb-2">PAYBACK PERIOD</div>
+            <div className="text-xs text-brand-dim leading-relaxed">
+              Bei Investition von €200–300k für Architektur + KI-Model-Training
+            </div>
+          </div>
+          <div>
+            <div className="text-2xl font-bold text-brand-accent mb-2">+30–50%</div>
+            <div className="text-xs font-bold text-white mb-2">USER ADOPTION BOOST</div>
+            <div className="text-xs text-brand-dim leading-relaxed">
+              Gaming-inspirierte UX + Copilot-Functions senken Lernkurve um 60%
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  </Section>
+);
+
 // --- DEMO SECTION ---
 const DemoSection = () => (
   <Section id="demo" className="bg-brand-black">
@@ -503,7 +793,7 @@ const DemoSection = () => (
         viewport={{ once: true, margin: "-100px" }}
         className="mb-12"
       >
-        <div className="section-label">Akt V — Funktionen in CRAFT</div>
+        <div className="section-label">TEIL VI — Funktionen in CRAFT</div>
         <h2 className="section-h2">CRAFT macht es <span>sichtbar.</span></h2>
         <p className="section-p">3D-Modellvisualisierung mit kritischen KPIs und KI-Chat für intelligente Fehlerdiagnose — alle Daten auf einen Blick.</p>
       </motion.div>
@@ -533,7 +823,7 @@ const DemoSection = () => (
             viewport={{ once: true, margin: "-100px" }}
             className="mb-12 rounded-xl overflow-hidden border border-white/10"
           >
-            <img 
+            <img  
               src="/CRAFT Dashboard Idee.png" 
               alt="CRAFT Dashboard Idee" 
               className="w-full h-auto object-cover"
@@ -572,7 +862,7 @@ const DemoSection = () => (
               <div className="text-xs font-bold mb-4 text-brand-accent">KI-Chat Assistenz</div>
               <div className="space-y-4 text-xs max-h-64 overflow-y-auto">
                 <div className="text-gray-400 text-left">
-                  <strong className="text-white">Du:</strong> "Was sind die aktuellen Probleme bei S-Klasse?"
+                  <strong className="text-white">Du:</strong> "Was sind die TEILuellen Probleme bei S-Klasse?"
                 </div>
                 <div className="bg-brand-accent/10 rounded p-3 border-l-2 border-brand-accent">
                   <strong className="text-brand-accent">CRAFT:</strong> "3 kritische Fehler erkannt: Motortemperatur 95°C (Sollwert 85°C), Druck unter Norm, Durchfluss-Sensor Signal schwach. Wahrscheinliche Ursache: Thermostat-Verschleiß."
@@ -688,8 +978,10 @@ export default function App() {
       <HeroSection scrollTo={scrollTo} />
       <ProblemSection />
       <FoundationSection />
+      <KPIBaselineSection />
       <LimitSection />
       <VisionSection />
+      <KPITransformationSection />
       <DemoSection />
       <NextStepsSection />
       
